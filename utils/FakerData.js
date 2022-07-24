@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+
 // import { faker } from '@faker-js/faker/locale/de';
 
 export const USERS = [];
@@ -12,6 +13,7 @@ export function createRandomUser() {
     password: faker.internet.password(),
     birthdate: faker.date.birthdate(),
     registeredAt: faker.date.past(),
+    company:faker.company.companyName()
   };
 }
 
