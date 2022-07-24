@@ -1,7 +1,36 @@
-
+import { useEffect, useState } from "react"
+import {createRandomUser} from "../utils/FakerData"
 function Suggestions() {
+  const [suggestions,setSuggestions] = useState([])
+
+  useEffect(()=>{
+    const suggestions = [...Array(6)].map((_,i)=>({
+      ...createRandomUser()
+    }))
+    setSuggestions(suggestions)
+    
+  },[])
+
   return (
-    <div>Suggestions</div>
+    <div className="mt-4 ml-10">
+      <div className="flex justify-between text-sm  mb-5">
+        <h3 className="text-sm font-bold text-gray-400">Suggesions for you</h3>
+        <button className="text-gray-600 font-semibold">See All</button>
+      </div>
+      {
+        suggestions.map(profile=>(
+          <div key={profile.userId} className="flex items-center justify-between mt-3">
+            <img src={profile.avatar} className="rounded-full w-10 h-10 border p-[2px]" alt="" />
+            <div className="flex-1 ml-4">
+              <h2 className="font-semibold text-sm">{profile.username}</h2>
+              <h3 className="text-gray-400 text-xs">Works at {profile.company} </h3>
+            </div>
+            <button className="text-blue-400 font-bold text-sm">Follow</button>
+          </div>
+        ))
+      }
+
+    </div>
   )
 }
 
