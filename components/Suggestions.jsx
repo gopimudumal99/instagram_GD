@@ -25,7 +25,7 @@ function Suggestions() {
               <h2 className="font-semibold text-sm">{profile.username}</h2>
               <h3 className="text-gray-400 text-xs">Works at {profile.company} </h3>
             </div>
-            <button className="text-blue-400 font-bold text-sm">Follow</button>
+            <button className="text-blue-400 font-bold text-sm">Follow</button> 
           </div>
         ))
       }
