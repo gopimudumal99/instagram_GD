@@ -22,11 +22,7 @@ function Stories() {
         {suggestions.map(profile =>{
             return <Story key={profile.userId} img={profile.avatar} username={profile.username}/>
         })}
-      {/* story */}
-      {/* story */}
-      {/* story */}
-      {/* story */}
-      {/* story */}
+
     </div>
   );
 }
