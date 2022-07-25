@@ -32,7 +32,7 @@ function signInPage({ providers }) {
   );
 }
 
-//serverside
+//serverside 
 export async function getServerSideProps() {
   const providers = await getProviders();
 
