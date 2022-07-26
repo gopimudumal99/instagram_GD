@@ -9,20 +9,23 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-  theme:{
-    logo:"https://links.papareact.com/sq0",
-    brandColor:"#F13287",
-    colorScheme:"auto"
+  theme: {
+    logo: "https://links.papareact.com/sq0",
+    brandColor: "#F13287",
+    colorScheme: "auto",
   },
-  pages:{
-    signIn:"/auth/signin",
+  pages: {
+    signIn: "/auth/signin",
   },
-  callbacks:{
-    async session({session,token,user}){
-      session.user.username = session.user.name.split(' ').join("").toLocaleLowerCase()
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.username = session.user.name
+        .split(" ")
+        .join("")
+        .toLocaleLowerCase();
       //Gopi Mudumal --> gopimudumal
-      session.user.userId = token.sub
-      return session 
-    }
-  }
+      session.user.userId = token.sub;
+      return session;
+    },
+  },
 });
