@@ -8,12 +8,12 @@ import { getCombinedModifierFlags } from "typescript";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
+  apiKey: "AIzaSyBEJM9IQ_VMf7Q2yyAGl6eS9GeieF0jrJc",
+  authDomain: "instagramgd-74857.firebaseapp.com",
   projectId: "instagramgd-74857",
   storageBucket: "instagramgd-74857.appspot.com",
   messagingSenderId: "877368844288",
-  appId: process.env.APP_ID
+  appId: "1:877368844288:web:cca32225f42471ec7cb8e5"
 };
 
 // Initialize Firebase
