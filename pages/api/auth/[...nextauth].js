@@ -9,16 +9,12 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-  theme: {
-    logo: "https://links.papareact.com/sq0",
-    brandColor: "#F13287",
-    colorScheme: "auto",
-  },
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/signin",
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user.username = session.user.name
         .split(" ")
         .join("")
