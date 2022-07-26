@@ -18,9 +18,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 //if there is no length of apps then insitializeapp or if there is length of apps then getAPP
-const app = !getApps.length() ? initializeApp(firebaseConfig): getApp();
+const app = (!getApps.length) ? initializeApp(firebaseConfig): getApp();
 
-const db = getFireStore();
+const db = getFirestore();
 const storage = getStorage();
 
 export{app,db,storage}
