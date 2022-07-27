@@ -30,6 +30,15 @@ function Post({ id, username, userImage, caption, img }) {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [hasliked, setHasLiked] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   useEffect(
     () =>
@@ -85,16 +94,33 @@ function Post({ id, username, userImage, caption, img }) {
   };
 
   return (
-    <div className="bg-white my-7 border rounded-sm">
+    <div className="bg-white my-7 border rounded-sm ">
       {/* header */}
-      <div className="flex items-center p-5">
+      <div className="flex items-center p-5 relative">
         <img
           src={userImage}
           className="rounded-full h-12 w-12 object-contain border p-1 mr-3"
           alt=""
         />
         <p className="flex-1 font-bold">{username}</p>
-        <DotsHorizontalIcon className="h-5" />
+        <DotsHorizontalIcon
+          className="h-5  cursor-pointer"
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseOut}
+        />
+        {isHovering && (
+          <div
+            onMouseOver={handleMouseOver}
+            onMouseLeave={handleMouseOut}
+            className="absolute -right-6 top-[3.5rem] bg-white border rounded-md p-2"
+          >
+            <ul>
+              <li className="text-white cursor-pointer font-bold rounded-md bg-red-500 p-1">
+                Delete
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
       {/* img */}
       <img src={img} className="object-cover w-full " alt="" />
