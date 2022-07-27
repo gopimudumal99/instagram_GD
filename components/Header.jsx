@@ -65,7 +65,7 @@ function Header() {
         {/* right */}
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon onClick={()=>router.push("/")} className="navBtn" />
-          <MenuIcon className="h-6 md:hidden cursor-pointer" />
+          <MenuIcon className="h-[3.5rem] lg:hidden md:hidden cursor-pointer" />
 
           {session?(
             <>
