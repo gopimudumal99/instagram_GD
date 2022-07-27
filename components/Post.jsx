@@ -12,19 +12,23 @@ import {
   addDoc,
   collection,
   deleteDoc,
+  deleteField,
   doc,
+  getDoc,
+  
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
+import {ref, deleteObject} from 'firebase/storage'
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 import { async } from "@firebase/util";
 
-function Post({ id, username, userImage, caption, img }) {
+function Post({ id, username, userImage, caption, img, userId }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
@@ -79,6 +83,14 @@ function Post({ id, username, userImage, caption, img }) {
       });
     }
   };
+  const deletPost = async () => {
+    // delete image in storage
+    const desertRef =  ref(storage,`posts/${id}/image`)
+    await deleteObject(desertRef)
+    // dete post data in doc
+    await deleteDoc(doc(db, "posts", id));
+    alert ("post is deleted sucessfully")
+  };
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -106,16 +118,18 @@ function Post({ id, username, userImage, caption, img }) {
         <DotsHorizontalIcon
           className="h-5  cursor-pointer"
           onMouseOver={handleMouseOver}
-          onMouseLeave={handleMouseOut}
         />
-        {isHovering && (
+        {isHovering && session?.user?.userId === userId && (
           <div
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseOut}
             className="absolute -right-6 top-[3.5rem] bg-white border rounded-md p-2"
           >
             <ul>
-              <li className="text-white cursor-pointer font-bold rounded-md bg-red-500 p-1">
+              <li
+                onClick={() => deletPost(id)}
+                className="text-white cursor-pointer font-bold rounded-md bg-red-500 p-1"
+              >
                 Delete
               </li>
             </ul>

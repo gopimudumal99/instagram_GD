@@ -47,6 +47,7 @@ function Posts() {
             username={post.data().username}
             userImage={post.data().profileImage}
             caption={post.data().caption}
+            userId={post.data().userID}
             img={post.data().image}
           />
         );

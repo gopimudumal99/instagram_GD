@@ -38,6 +38,7 @@ function Modal() {
       caption: captionRef.current.value,
       profileImage: session.user.image,
       timestamp: serverTimestamp(),
+      userID:session.user.userId
     });
 
     // console.log("New doc added with id", docRef.id);
