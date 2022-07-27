@@ -21,6 +21,7 @@ export default NextAuth({
         .toLocaleLowerCase();
       //Gopi Mudumal --> gopimudumal
       session.user.userId = token.sub;
+      
       return session;
     },
   },
