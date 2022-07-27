@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React,{useState} from "react";
 import {
   SearchIcon,
   PlusCircleIcon,
@@ -18,6 +18,15 @@ function Header() {
   const {data:session} = useSession();
   const [open,setOpen] = useRecoilState(modalState)
   const router = useRouter();
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
@@ -72,9 +81,17 @@ function Header() {
             <img
               src={session.user.image}
               alt="Profile pic"
-              onClick={signOut}
-              className="h-10 w-10 rounded-full cursor-pointer"
+              onMouseOver={handleMouseOver} onMouseLeave={handleMouseOut} onClick={handleMouseOver}
+              className="h-10 w-10 rounded-full cursor-pointer relative"
             />
+            {isHovering && (
+            <div  onMouseOver={handleMouseOver} onMouseLeave={handleMouseOut} className="absolute top-[3rem] right-3 bg-white border p-2 "> 
+              <ul>
+                <li className="p-2 cursor-pointer">Profile</li>
+                <li  onClick={signOut} className="p-2 cursor-pointer">Logout</li>
+              </ul>
+            </div>
+            )}
             </>
 
           ):(

@@ -22,6 +22,7 @@ function Modal() {
   const [selectedFile, setSelectedFile] = useState(null);
   const captionRef = useRef(null);
 
+
   const uploadPost = async () => {
     if (loading) return;
 

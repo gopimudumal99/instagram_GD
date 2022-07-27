@@ -34,6 +34,9 @@ function Posts() {
       unsubscribe();
     };
   }, [db]);
+
+
+  
   return (
     <div>
       {posts?.map((post) => {
